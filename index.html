@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarive PM Case Study · Dedeepya Guntaka</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+ --bg:#0c0c0e;
+ --bg2:#131316;
+ --bg3:#1a1a1f;
+ --bg4:#222228;
+ --b:#26262e;
+ --b2:#34343e;
+ --b3:#46464e;
+ --t:#e8e8f0;
+ --t2:#9090a4;
+ --t3:#606074;
+ --pu:#8b6fff;
+ --pu2:#a98fff;
+ --pu3:#c8b8ff;
+ --pbl:#16122a;
+ --pbr:#3a2e6a;
+ --gr:#20c070;
+ --gbl:#0c1e14;
+ --gbr:#1a4a2a;
+ --am:#f0a020;
+ --abl:#1e1508;
+ --abr:#483808;
+ --re:#e84040;
+ --rbl:#1e0808;
+ --rbr:#58100a;
+ --f:'Inter',sans-serif;
+ --m:'JetBrains Mono',monospace;
+}
+
+html{scroll-behavior:smooth}
+body{
+ font-family:var(--f);
+ background:var(--bg);
+ color:var(--t);
+ font-size:16px;
+ line-height:1.75;
+ -webkit-font-smoothing:antialiased;
+}
+
+/* ── LAYOUT ── */
+.wrap{max-width:680px;margin:0 auto;padding:0 32px}
+
+/* ── HERO ── */
+.hero{
+ padding:80px 32px 0;
+ max-width:680px;
+ margin:0 auto;
+}
+.hero-kicker{
+ font-size:11px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:.1em;
+ color:var(--pu2);
+ margin-bottom:20px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+}
+.hero-kicker::after{
+ content:'';
+ flex:1;
+ max-width:40px;
+ height:1px;
+ background:var(--pbr);
+}
+.hero h1{
+ font-size:52px;
+ font-weight:700;
+ letter-spacing:-2.5px;
+ line-height:1.05;
+ color:var(--t);
+ margin-bottom:20px;
+}
+.hero h1 .hl{
+ background:linear-gradient(135deg,var(--pu),var(--pu3));
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+ background-clip:text;
+}
+.hero-desc{
+ font-size:18px;
+ color:var(--t2);
+ font-weight:400;
+ line-height:1.6;
+ max-width:580px;
+ margin-bottom:32px;
+}
+.hero-meta{
+ display:flex;
+ align-items:center;
+ gap:0;
+ padding:20px 0;
+ border-top:1px solid var(--b);
+ border-bottom:1px solid var(--b);
+ margin-bottom:64px;
+}
+.hm-item{
+ flex:1;
+ text-align:center;
+ border-right:1px solid var(--b);
+}
+.hm-item:last-child{border-right:none}
+.hm-val{
+ font-size:22px;
+ font-weight:700;
+ letter-spacing:-.5px;
+ color:var(--t);
+ font-family:var(--m);
+}
+.hm-val.p{color:var(--pu2)}
+.hm-label{
+ font-size:11px;
+ color:var(--t3);
+ margin-top:2px;
+ font-weight:500;
+}
+
+/* ── TOC ── */
+.toc{
+ background:var(--bg2);
+ border:1px solid var(--b);
+ border-left:2px solid var(--pu);
+ border-radius:0 8px 8px 0;
+ padding:20px 24px;
+ margin:0 0 56px;
+}
+.toc-title{
+ font-size:10px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:.1em;
+ color:var(--t3);
+ margin-bottom:12px;
+}
+.toc a{
+ display:block;
+ font-size:14px;
+ color:var(--t2);
+ text-decoration:none;
+ padding:4px 0;
+ transition:color .12s;
+ border-bottom:none;
+}
+.toc a:hover{color:var(--pu2)}
+.toc a .toc-n{
+ color:var(--t3);
+ font-family:var(--m);
+ font-size:12px;
+ margin-right:8px;
+}
+
+/* ── SECTION ── */
+.section{margin-bottom:64px}
+.sec-label{
+ font-size:10px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:.1em;
+ color:var(--pu2);
+ margin-bottom:10px;
+ display:flex;
+ align-items:center;
+ gap:8px;
+}
+.sec-label::before{
+ content:'';
+ width:20px;
+ height:1px;
+ background:var(--pbr);
+}
+h2{
+ font-size:26px;
+ font-weight:600;
+ letter-spacing:-.6px;
+ line-height:1.2;
+ color:var(--t);
+ margin-bottom:16px;
+}
+h3{
+ font-size:16px;
+ font-weight:600;
+ color:var(--t);
+ margin:28px 0 10px;
+}
+p{
+ color:var(--t2);
+ margin-bottom:16px;
+ font-size:15px;
+}
+p strong{color:var(--t);font-weight:500}
+p:last-child{margin-bottom:0}
+
+/* ── CALLOUT ── */
+.callout{
+ display:flex;
+ gap:14px;
+ padding:16px 18px;
+ border-radius:8px;
+ margin:20px 0;
+ font-size:14px;
+ line-height:1.65;
+ color:var(--t2);
+ border:1px solid var(--b2);
+ background:var(--bg2);
+}
+.callout.purple{background:var(--pbl);border-color:var(--pbr);color:var(--pu3)}
+.callout.green{background:var(--gbl);border-color:var(--gbr);color:#80e0b0}
+.callout.amber{background:var(--abl);border-color:var(--abr);color:#e0b060}
+.callout-icon{font-size:16px;flex-shrink:0;margin-top:2px;line-height:1}
+.callout strong{font-weight:600;color:inherit}
+
+/* ── QUOTE ── */
+.quote{
+ border-left:2px solid var(--pu);
+ padding:14px 20px;
+ margin:20px 0;
+ background:var(--pbl);
+ border-radius:0 8px 8px 0;
+}
+.quote p{
+ font-size:15px;
+ color:var(--t);
+ font-style:italic;
+ margin-bottom:8px;
+ line-height:1.6;
+}
+.quote p::before{content:'"';color:var(--pu2);font-style:normal;font-size:20px;margin-right:1px;line-height:0;vertical-align:-.3em}
+.quote p::after{content:'"';color:var(--pu2);font-style:normal;font-size:20px;margin-left:1px;line-height:0;vertical-align:-.3em}
+.qsrc{font-size:12px;color:var(--t3);font-style:normal;font-weight:500}
+
+/* ── STATS ── */
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:1px;
+ background:var(--b);
+ border:1px solid var(--b);
+ border-radius:8px;
+ overflow:hidden;
+ margin:20px 0;
+}
+.stat{
+ background:var(--bg2);
+ padding:20px;
+}
+.stat-n{
+ font-size:32px;
+ font-weight:700;
+ letter-spacing:-1.5px;
+ color:var(--t);
+ font-family:var(--m);
+ line-height:1;
+}
+.stat-n .u{font-size:18px;font-weight:500;color:var(--t3)}
+.stat-l{font-size:12px;color:var(--t3);margin-top:6px;line-height:1.4}
+
+/* ── TWO COL ── */
+.two-col{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin:16px 0;
+}
+.col-box{
+ background:var(--bg2);
+ border:1px solid var(--b);
+ border-radius:8px;
+ padding:16px;
+}
+.col-box h4{
+ font-size:11px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:.07em;
+ color:var(--t3);
+ margin-bottom:10px;
+}
+.col-box ul{padding-left:16px}
+.col-box ul li{font-size:13px;color:var(--t2);margin-bottom:5px;line-height:1.5}
+
+/* ── TABLE ── */
+.tbl{
+ width:100%;
+ border-collapse:collapse;
+ margin:16px 0;
+ font-size:13px;
+}
+.tbl th{
+ font-size:10px;
+ font-weight:600;
+ text-transform:uppercase;
+ letter-spacing:.07em;
+ color:var(--t3);
+ padding:8px 12px;
+ border-bottom:1px solid var(--b2);
+ text-align:left;
+ background:var(--bg3);
+}
+.tbl td{
+ padding:10px 12px;
+ border-bottom:1px solid var(--b);
+ color:var(--t2);
+ vertical-align:top;
+ line-height:1.5;
+}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .bold{font-weight:500;color:var(--t)}
+.tbl .italic{font-style:italic;color:var(--t3);font-size:12px}
+
+/* ── PRIORITY TABLE ── */
+.ptbl{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.ptbl th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--t3);padding:8px 12px;border-bottom:1px solid var(--b2);text-align:left;background:var(--bg3)}
+.ptbl td{padding:10px 12px;border-bottom:1px solid var(--b);vertical-align:middle}
+.ptbl tr:last-child td{border-bottom:none}
+.ptbl tr:hover td{background:var(--bg3)}
+.feat{font-weight:500;color:var(--t);font-size:13px}
+.sc{font-weight:600;font-size:14px;font-family:var(--m)}
+.sc.h{color:var(--gr)}.sc.m{color:var(--am)}.sc.l{color:var(--t3)}
+.vd{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.vin{background:var(--gbl);color:var(--gr);border:1px solid var(--gbr)}
+.vout{background:var(--rbl);color:var(--re);border:1px solid var(--rbr)}
+.reason{font-size:12px;color:var(--t3);line-height:1.4}
+
+/* ── JOURNEY ── */
+.journey{position:relative;margin:20px 0;padding-left:32px}
+.journey::before{content:'';position:absolute;left:7px;top:12px;bottom:12px;width:1px;background:var(--b2)}
+.jstep{position:relative;padding-bottom:24px}
+.jstep:last-child{padding-bottom:0}
+.jdot{position:absolute;left:-32px;top:0;width:16px;height:16px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--t3)}
+.jdot.pain{background:var(--rbl);border-color:var(--rbr);color:var(--re)}
+.jdot.done{background:var(--gbl);border-color:var(--gbr);color:var(--gr)}
+.jdot.active{background:var(--pbl);border-color:var(--pbr);color:var(--pu2)}
+.j-title{font-size:14px;font-weight:600;color:var(--t);margin-bottom:3px}
+.j-body{font-size:13px;color:var(--t2);line-height:1.55}
+.j-pain{display:inline-block;font-size:11px;color:var(--re);background:var(--rbl);border:1px solid var(--rbr);padding:2px 8px;border-radius:4px;margin-top:5px}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+.kpi{border:1px solid var(--b);border-radius:8px;padding:16px;background:var(--bg2)}
+.kpi.north{border-color:var(--pbr);background:var(--pbl)}
+.kpi-val{font-size:24px;font-weight:700;letter-spacing:-.5px;color:var(--t);font-family:var(--m)}
+.kpi-val.p{color:var(--pu2)}
+.kpi-label{font-size:12px;font-weight:500;color:var(--t2);margin-top:3px}
+.kpi-why{font-size:11px;color:var(--t3);margin-top:5px;line-height:1.45}
+
+/* ── COMPETITIVE ── */
+.comp-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--b);font-size:13px}
+.comp-item:last-child{border-bottom:none}
+.comp-tool{font-weight:500;color:var(--t);min-width:110px;flex-shrink:0}
+.comp-does{color:var(--t2);flex:1;line-height:1.5}
+.comp-badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.comp-gap{background:var(--rbl);color:var(--re);border:1px solid var(--rbr)}
+.comp-win{background:var(--gbl);color:var(--gr);border:1px solid var(--gbr)}
+.comp-clarive{background:var(--pbl);color:var(--pu2);border:1px solid var(--pbr)}
+
+/* ── DIVIDER ── */
+hr{border:none;border-top:1px solid var(--b);margin:48px 0}
+
+/* ── FOOTER ── */
+.footer{
+ padding:32px 0 80px;
+ border-top:1px solid var(--b);
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ flex-wrap:wrap;
+ gap:12px;
+}
+.footer-left{font-size:13px;color:var(--t3)}
+.footer-left strong{color:var(--t2);font-weight:500}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:13px;color:var(--pu2);text-decoration:none;transition:color .12s}
+.footer-links a:hover{color:var(--pu3)}
+
+@media(max-width:640px){
+ .hero h1{font-size:36px}
+ .hero-desc{font-size:16px}
+ .stats{grid-template-columns:1fr}
+ .two-col{grid-template-columns:1fr}
+ .kpi-grid{grid-template-columns:1fr}
+ .hm-item{padding:12px 8px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+ <div class="hero-kicker">Product case study</div>
+ <h1>Clarive<br><span class="hl">Case Study</span></h1>
+ <p class="hero-desc">An AI-powered metric alignment workspace built for cross-functional teams designed to surface data conflicts and collect stakeholder sign-off before executive reviews.</p>
+ <div class="hero-meta">
+ <div class="hm-item">
+ <div class="hm-val p">12</div>
+      <div class="hm-label">Interviews conducted</div>
+ </div>
+ <div class="hm-item">
+ <div class="hm-val">6 wks</div>
+ <div class="hm-label">Sprint</div>
+ </div>
+ <div class="hm-item">
+ <div class="hm-val">FP&A</div>
+ <div class="hm-label">Target segment</div>
+ </div>
+ <div class="hm-item">
+ <div class="hm-val p">$1.6K</div>
+ <div class="hm-label">Economic pain / mo</div>
+ </div>
+ </div>
+</div>
+
+<div class="wrap">
+
+ <!-- TOC -->
+ <div class="toc">
+ <div class="toc-title">On this page</div>
+ <a href="#context"><span class="toc-n">01</span>Product context</a>
+ <a href="#problem"><span class="toc-n">02</span>The problem</a>
+ <a href="#research"><span class="toc-n">03</span>Research process</a>
+ <a href="#pivot"><span class="toc-n">04</span>The insight pivot</a>
+ <a href="#solution"><span class="toc-n">05</span>Product solution</a>
+ <a href="#prioritization"><span class="toc-n">06</span>Feature prioritization</a>
+ <a href="#competitive"><span class="toc-n">07</span>Competitive landscape</a>
+ <a href="#gtm"><span class="toc-n">08</span>Go-to-market</a>
+ <a href="#metrics"><span class="toc-n">09</span>Success metrics</a>
+ <a href="#risks"><span class="toc-n">10</span>Risks</a>
+ <a href="#reflection"><span class="toc-n">11</span>What I'd do differently</a>
+ </div>
+
+  <!-- 02 CONTEXT -->
+ <div class="section" id="context">
+ <div class="sec-label">01</div>
+ <h2>Product context</h2>
+ <p>The underlying platform is a VC-backed generative AI startup competing against OpenAI, Google, and Microsoft. By mid-2025 it had <strong>125K paid accounts</strong> and 2.2M free users but was burning at −136% operating margin with Sales & Marketing costs ballooning to $20M YTD against $15M in revenue.</p>
+ <div class="callout amber">
+ <span class="callout-icon">⚠</span>
+ <div>The CEO's thesis: <em>gen AI quality will commoditize. Win through business applications built on top of the core, not model quality alone.</em> The mandate was to identify a use case where one business user adopts and naturally brings their whole team.</div>
+ </div>
+ <p>This constraint shaped every product decision. Clarive had to solve a real recurring team-level problem, require multiple seats to work, and generate enough value to justify switching from tools people already considered "good enough."</p>
+ </div>
+
+ <!-- 03 PROBLEM -->
+ <div class="section" id="problem">
+ <div class="sec-label">02</div>
+ <h2>The problem</h2>
+ <p>Before interviews, the assumption was straightforward: analysts spend too much time gathering and reconciling data from fragmented tools. The expected solution was better data aggregation.</p>
+ <div class="callout">
+ <span class="callout-icon">💭</span>
+ <div><strong>Original hypothesis:</strong> Employees working on cross-functional teams preparing recurring reports for senior leadership experience high coordination friction due to fragmented tools and a lack of shared context.</div>
+ </div>
+ <p>The initial read was directionally right about where the pain existed, but wrong about its root cause. The interviews told a different story.</p>
+ </div>
+
+ <!-- 04 RESEARCH -->
+ <div class="section" id="research">
+ <div class="sec-label">03</div>
+ <h2>Research process</h2>
+ <p>The research spanned three rounds of qualitative interviews. I personally conducted 12 of these, targeting data professionals at early-stage companies, cross-functional reporting roles in finance and B2B SaaS, and specialist analyst roles across healthcare, fraud, and financial planning. Across 25+ interviews in total, the same patterns emerged independently across every role and industry. Every interview was 10 to 15 minutes, recorded with permission, and followed a structured guide. One rule applied throughout: a theme mentioned by only one participant is an anecdote. A pattern requires two or more independent, unprompted mentions.</p>
+
+ <h3>Round 1: Data professionals at startups</h3>
+ <table class="tbl">
+ <thead><tr><th>#</th><th>Role</th><th>Company type</th></tr></thead>
+ <tbody>
+ <tr><td class="bold">1</td><td>Data Science Intern</td><td>Financial services AI startup</td></tr>
+ <tr><td class="bold">2</td><td>Graduate student / AI tool builder</td><td>Early-stage startup</td></tr>
+ <tr><td class="bold">3</td><td>Data Engineer</td><td>Small project management SaaS</td></tr>
+ <tr><td class="bold">4</td><td>Data Scientist</td><td>84.51° (Kroger's data science subsidiary)</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Round 2: Cross-functional reporting roles</h3>
+ <table class="tbl">
+ <thead><tr><th>#</th><th>Role</th><th>Context</th></tr></thead>
+ <tbody>
+ <tr><td class="bold">5</td><td>Research Finance Manager</td><td>University · 12-person team · monthly exec reporting</td></tr>
+ <tr><td class="bold">6</td><td>Senior Data Analyst</td><td>Regional bank · 6 years · weekly dashboards + board reports</td></tr>
+ <tr><td class="bold">7</td><td>Marketing Ops Manager</td><td>B2B SaaS · solo ops · weekly + monthly leadership reports</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Round 3: Specialist analyst roles (5 interviews)</h3>
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Role</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr><td class="bold">8</td><td>Senior Financial Analyst</td><td>Corporate FP&amp;A · monthly KPI cycles with exec sign-off</td></tr>
+        <tr><td class="bold">9</td><td>Hospital Operations Analyst</td><td>Healthcare · preparing operational data for clinical leadership</td></tr>
+        <tr><td class="bold">10</td><td>Application Fraud Analyst</td><td>Financial services · cross-team risk trend reporting before exec review</td></tr>
+        <tr><td class="bold">11</td><td>Financial Planning Manager</td><td>Madewell, J.Crew Group · financial planning and weekly senior leadership recaps</td></tr>
+        <tr><td class="bold">12</td><td>Operations Team Member</td><td>Madewell, J.Crew Group · cross-functional operations reporting to senior stakeholders</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Patterns across all 12 interviews</h3>
+ <div class="two-col">
+ <div class="col-box">
+ <h4>Fragmented tools</h4>
+ <ul>
+ <li>Every person operated across 5 to 7 disconnected systems per report</li>
+ <li>Export from one, clean in another, reconcile in a third, paste into a fourth</li>
+ <li>No one described their setup as solving the problem</li>
+ </ul>
+ </div>
+ <div class="col-box">
+ <h4>Coordination over analysis</h4>
+ <ul>
+ <li>Chasing reviews, reconciling definitions, and validating numbers across teams consumed more time than building the report</li>
+ <li>No AI tool addressed any part of this</li>
+ </ul>
+ </div>
+ <div class="col-box">
+ <h4>Invisible review cycles</h4>
+ <ul>
+ <li>No system tracked whether a stakeholder had reviewed or confirmed a number</li>
+ <li>Deadlines lived in people's heads, not shared systems</li>
+ </ul>
+ </div>
+ <div class="col-box">
+ <h4>Emotional escalation arc</h4>
+ <ul>
+ <li>Neutral at cycle start → anxiety in the 48h before the exec review → relief only after the meeting ends</li>
+ <li>Fear: being challenged on a number and not having the answer</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <!-- 05 PIVOT -->
+ <div class="section" id="pivot">
+ <div class="sec-label">04</div>
+ <h2>The insight pivot</h2>
+ <p>The most important finding was a direct contradiction of the original assumption. The pain was not about data gathering. It was about metric alignment failure before the executive meeting.</p>
+
+ <div class="quote">
+ <p>40% of my time goes to making sure I'm not about to embarrass myself in front of the CFO — validating definitions, chasing reviews, checking the numbers match.</p>
+ <div class="qsrc">Senior Data Analyst · Regional bank · user research</div>
+ </div>
+
+ <div class="quote">
+ <p>I spend more time massaging data into a usable format than analyzing it. The coordination effort sometimes feels heavier than the analysis itself.</p>
+ <div class="qsrc">Marketing Ops Manager · B2B SaaS · user research</div>
+ </div>
+
+ <div class="quote">
+ <p>80% is people dependency. The majority of time goes in coordination itself. Getting the data is the most struggling part.</p>
+ <div class="qsrc">Business Manager · Large enterprise bank · user research</div>
+ </div>
+
+ <p>Across 25+ interviews in total, the findings confirmed this<strong>70 to 85% of reporting time was spent on coordination</strong>, not report creation. Formatting was the least painful part. Copilot already handled that.</p>
+
+ <div class="callout green">
+ <span class="callout-icon">→</span>
+ <div><strong>The pivot:</strong> The problem is not data fragmentation. It is metric alignment failure before the executive meeting: different teams defining the same number differently, with no structured system to catch and resolve discrepancies before leadership scrutiny. Formatting tools solve 15% of the pain. Clarive targets the other 85%.</div>
+ </div>
+
+ <div class="stats">
+ <div class="stat"><div class="stat-n">70 to 85<span class="u">%</span></div><div class="stat-l">of reporting time spent on coordination, not analysis</div></div>
+ <div class="stat"><div class="stat-n">5 to 7</div><div class="stat-l">disconnected tools per analyst per reporting cycle</div></div>
+ <div class="stat"><div class="stat-n">48<span class="u">h</span></div><div class="stat-l">before the exec meeting when stress peaks and conflicts surface</div></div>
+ </div>
+ </div>
+
+ <!-- 06 SOLUTION -->
+ <div class="section" id="solution">
+ <div class="sec-label">05</div>
+ <h2>Product solution</h2>
+ <p>Clarive is a cross-team metric alignment workspace built as an application layer on top of an enterprise LLM. It sits between your data sources and your executive review, detecting conflicts, explaining root causes, and collecting stakeholder sign-off before anyone walks into the room.</p>
+
+ <h3>Core user flow</h3>
+ <div class="journey">
+ <div class="jstep">
+ <div class="jdot">1</div>
+ <div class="j-title">Set up your workspace</div>
+ <div class="j-body">Choose your team function (FP&A, Sales Ops, RevOps, Marketing Ops), invite members with role-based permissions Admin, Can approve, Can edit, View only connect data sources, and pick a report template.</div>
+ </div>
+ <div class="jstep">
+ <div class="jdot">2</div>
+ <div class="j-title">Clarive scans automatically</div>
+ <div class="j-body">The LLM reads across connected sources Salesforce, NetSuite, Excel, Power BI, Tableau and flags metric discrepancies with a root cause explanation and confidence score.</div>
+ </div>
+ <div class="jstep">
+ <div class="jdot pain">!</div>
+ <div class="j-title">Conflict detected</div>
+ <div class="j-body">Finance shows Q4 Revenue at $500K. Sales shows $480K. Clarive identifies the cause: 3 deals closed Dec 31 after the Salesforce export at 5PM a timing difference, not a data error. Confidence: 85%.</div>
+ <span class="j-pain">Addresses: "Finance and Sales never agree on the numbers"</span>
+ </div>
+ <div class="jstep">
+ <div class="jdot">3</div>
+ <div class="j-title">Resolve with a full audit trail</div>
+ <div class="j-body">Accept one figure, flag for manual review, or escalate. Every decision is logged: who resolved it, when, and why. Approvers see the context, not just the number.</div>
+ </div>
+ <div class="jstep">
+ <div class="jdot done">✓</div>
+ <div class="j-title">Collect sign-offs before the room</div>
+ <div class="j-body">Request approvals from stakeholders. Readiness score updates live. Walk into the executive review at 98% confident, not hoping the numbers hold up.</div>
+ </div>
+ </div>
+
+ <div class="callout">
+ <span class="callout-icon">⚡</span>
+ <div><strong>Built on the platform:</strong> Clarive is a purpose-built application layer on the existing LLM infrastructure. No new model training required. One FP&A analyst adopts it, their whole team follows. No procurement cycle needed at the Starter or Team tier.</div>
+ </div>
+ </div>
+
+ <!-- 07 PRIORITIZATION -->
+ <div class="section" id="prioritization">
+ <div class="sec-label">06</div>
+ <h2>Feature prioritization</h2>
+ <p>The research validated the problem but surfaced a long list of potential features. I used an effort-vs-value framework to decide what goes into v1 and what gets cut.</p>
+
+ <table class="ptbl">
+ <thead>
+ <tr><th>Feature</th><th>User value</th><th>Effort</th><th>v1</th><th>Rationale</th></tr>
+ </thead>
+ <tbody>
+ <tr><td class="feat">Conflict detection + AI root cause</td><td><span class="sc h">High</span></td><td><span class="sc m">Med</span></td><td><span class="vd vin">In</span></td><td class="reason">Core value prop. The LLM logic is handled by the underlying infrastructure.</td></tr>
+ <tr><td class="feat">Stakeholder sign-off tracker</td><td><span class="sc h">High</span></td><td><span class="sc m">Med</span></td><td><span class="vd vin">In</span></td><td class="reason">Directly addresses the approval friction every interviewee described.</td></tr>
+ <tr><td class="feat">Audit trail per conflict</td><td><span class="sc h">High</span></td><td><span class="sc l">Low</span></td><td><span class="vd vin">In</span></td><td class="reason">Usability test: 6/15 users blindly accepted AI recommendations. Audit trail builds trust.</td></tr>
+ <tr><td class="feat">Report readiness score</td><td><span class="sc m">Med</span></td><td><span class="sc l">Low</span></td><td><span class="vd vin">In</span></td><td class="reason">Single number that answers "can I walk into this meeting?" High emotional value.</td></tr>
+ <tr><td class="feat">Report templates by function</td><td><span class="sc m">Med</span></td><td><span class="sc l">Low</span></td><td><span class="vd vin">In</span></td><td class="reason">Reduces setup friction. Matches existing workflow rather than asking users to change it.</td></tr>
+ <tr><td class="feat">Role-based permissions</td><td><span class="sc m">Med</span></td><td><span class="sc l">Low</span></td><td><span class="vd vin">In</span></td><td class="reason">Multi-seat product requires hierarchy. Maps directly to org structure.</td></tr>
+ <tr><td class="feat">Automated report generation</td><td><span class="sc m">Med</span></td><td><span class="sc h">High</span></td><td><span class="vd vout">Cut</span></td><td class="reason">Formatting is already solved — Copilot handles it. Not the differentiated value.</td></tr>
+ <tr><td class="feat">Slack / Teams notifications</td><td><span class="sc m">Med</span></td><td><span class="sc m">Med</span></td><td><span class="vd vout">Cut</span></td><td class="reason">In-app reminders cover the need at v1. Integrations add complexity without changing core behavior.</td></tr>
+ <tr><td class="feat">Mobile version</td><td><span class="sc l">Low</span></td><td><span class="sc h">High</span></td><td><span class="vd vout">Cut</span></td><td class="reason">Report prep is a desktop workflow. Not a mobile use case at this stage.</td></tr>
+ </tbody>
+ </table>
+ </div>
+
+ <!-- 08 COMPETITIVE -->
+ <div class="section" id="competitive">
+ <div class="sec-label">07</div>
+ <h2>Competitive landscape</h2>
+ <p>The most important competitive question was MS Copilot — named by interviewees as the most credible current option. The research gave a clear answer on where Clarive wins and why the two products are not competing for the same job.</p>
+
+ <div class="comp-item">
+ <span class="comp-tool">MS Copilot</span>
+ <span class="comp-does">Strong for individual productivity within M365: email drafting, summaries, slide generation. One interviewee confirmed: "Formatting and summarizing — fast. Copilot handles it."</span>
+ <span class="comp-badge comp-gap">Can't cross teams</span>
+ </div>
+ <div class="comp-item">
+ <span class="comp-tool">Excel / Sheets</span>
+ <span class="comp-does">Universal data container. Used by every interviewee. But: "Multiple people on same Excel → version conflicts, data integrity issues."</span>
+ <span class="comp-badge comp-gap">No conflict detection</span>
+ </div>
+ <div class="comp-item">
+ <span class="comp-tool">Notion / Confluence</span>
+ <span class="comp-does">Good for documentation and task visibility. Requires constant manual updating. No AI layer, no metric awareness.</span>
+ <span class="comp-badge comp-gap">Static, no live data</span>
+ </div>
+ <div class="comp-item">
+ <span class="comp-tool">Tableau / Power BI</span>
+ <span class="comp-does">Excellent for dashboards once data is clean. But: "Customizing dashboards takes longer than manually pulling the numbers for a single report."</span>
+ <span class="comp-badge comp-gap">Shows data, doesn't resolve it</span>
+ </div>
+ <div class="comp-item">
+ <span class="comp-tool" style="color:var(--pu2)">Clarive</span>
+ <span class="comp-does">Purpose-built for cross-team metric alignment. Reads from all sources simultaneously, detects definition conflicts, explains root causes, and collects structured sign-off before the executive meeting.</span>
+ <span class="comp-badge comp-clarive">Clarive's category</span>
+ </div>
+
+ <div class="callout green">
+ <span class="callout-icon">→</span>
+ <div><strong>Positioning:</strong> Copilot makes individuals faster at formatting. Clarive makes teams aligned before the meeting. Adjacent problems, not the same one. Clarive doesn't compete with Copilot; it completes what Copilot can't do.</div>
+ </div>
+ </div>
+
+ <!-- 09 GTM -->
+ <div class="section" id="gtm">
+ <div class="sec-label">08</div>
+ <h2>Go-to-market</h2>
+ <p>The go-to-market strategy is grounded directly in the research: who has the pain most acutely, how buying decisions get made at that level, and how the product naturally spreads once one person adopts it.</p>
+
+ <h3>First beachhead: FP&A teams at Series B to D fintechs</h3>
+ <p>This segment emerged clearly from the interviews. They have the pain at highest intensity, use mixed stacks where Copilot can't operate cross-system, and sit above "spreadsheet is fine" but below "IT bought a full enterprise suite." Team sizes of 4 to 10 analysts fit the Team plan without procurement approval. A VP or Director can sign off directly.</p>
+
+ <h3>Growth motion</h3>
+ <p>One analyst adopts Clarive. The product only delivers value when multiple team members are in it, so the analyst pulls in their Finance Lead, Sales VP, and Marketing Director to set up approvals. Individual adoption forces team-level buy-in. That's the PLG motion.</p>
+
+ <div class="callout">
+ <span class="callout-icon">💬</span>
+ <div>"A tool that only I used wouldn't solve the coordination layer. Everyone else would need to be in it too." — Senior Data Analyst, user research. This is both the adoption challenge and the growth mechanism.</div>
+ </div>
+
+ <h3>Acquisition channels</h3>
+ <div class="two-col">
+ <div class="col-box">
+ <h4>Outbound</h4>
+ <ul>
+ <li>CFO Connect, Pavilion FP&A, LinkedIn</li>
+ <li>Message: "Catch metric conflicts before your next leadership review"</li>
+ <li>Target: Finance Directors and Sales Ops leads at Series B to D</li>
+ </ul>
+ </div>
+ <div class="col-box">
+ <h4>Product-led</h4>
+ <ul>
+ <li>Platform's 125K paid user base — 0.24% conversion reaches 300 trial teams</li>
+ <li>Every conflict scan produces a shareable Clarive-branded summary</li>
+ <li>Non-users see value before they sign up</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <!-- 10 METRICS -->
+ <div class="section" id="metrics">
+ <div class="sec-label">09</div>
+ <h2>Success metrics</h2>
+ <p>Four KPIs designed to answer three questions: are users getting immediate value, does the product actually work, and are teams staying?</p>
+
+ <div class="kpi-grid">
+ <div class="kpi north">
+ <div class="kpi-val p">15%+</div>
+ <div class="kpi-label">Trial-to-paid conversion</div>
+ <div class="kpi-why">North star. Benchmark: Slack, Notion. Below 5% = stop. 5 to 15% = rethink. 15%+ = scale.</div>
+ </div>
+ <div class="kpi">
+ <div class="kpi-val">85%+</div>
+ <div class="kpi-label">Conflict detection precision</div>
+ <div class="kpi-why">Below this, users stop trusting the AI. Usability testing showed 6/15 users blindly accepting recommendations without checking sources. Precision drives safe adoption.</div>
+ </div>
+ <div class="kpi">
+ <div class="kpi-val">10 min</div>
+ <div class="kpi-label">Time to first conflict found</div>
+ <div class="kpi-why">Value must show in the first session. No conflict in 10 minutes = users don't come back.</div>
+ </div>
+ <div class="kpi">
+ <div class="kpi-val">80%+</div>
+ <div class="kpi-label">90-day team retention</div>
+ <div class="kpi-why">Churn destroys the 3x ROI model. Retention validates the product is embedded in the reporting cycle, not a one-time experiment.</div>
+ </div>
+ </div>
+
+ <h3>6-month decision framework</h3>
+ <div class="two-col">
+ <div class="col-box" style="border-color:var(--rbr);background:var(--rbl)">
+ <h4 style="color:var(--re)">Stop</h4>
+ <ul><li>Conversion under 5%</li><li>Conflict detection precision under 70%</li></ul>
+ </div>
+ <div class="col-box" style="border-color:var(--gbr);background:var(--gbl)">
+ <h4 style="color:var(--gr)">Scale</h4>
+ <ul><li>Conversion 15%+ and precision 85%+</li><li>300 trial teams · 45 paying teams · 3x ROI</li></ul>
+ </div>
+ </div>
+ </div>
+
+ <!-- 11 RISKS -->
+ <div class="section" id="risks">
+ <div class="sec-label">10</div>
+ <h2>Risks</h2>
+
+ <h3>Over-trust in AI recommendations</h3>
+ <p>Usability testing found 6 of 15 users blindly accepted AI-flagged metrics without checking sources. The mitigation is an explicit audit trail that shows where the number came from and confidence scores on every recommendation, making the source visible rather than just the conclusion.</p>
+
+ <h3>Adoption friction in regulated industries</h3>
+ <p>Every regulated-industry interviewee named compliance as a blocker. Banking: only MS Copilot allowed. Mondelez: all external AI banned. The onboarding addresses this with a dedicated compliance step offering Cloud SaaS (SOC 2), private VPC deployment, and on-premise options. Not an afterthought — a first-class feature.</p>
+
+ <h3>Workflow lock-in resistance</h3>
+ <p>The JTBD demand inhibitor was consistent: fear of changing workflows for high-visibility reporting. The mitigation is meeting users where they already are. Clarive maps to their existing templates and connects to tools they already use rather than asking them to rebuild their workflow inside a new system.</p>
+ </div>
+
+ <!-- 12 REFLECTION -->
+ <div class="section" id="reflection">
+ <div class="sec-label">11</div>
+ <h2>What I'd do differently</h2>
+
+ <h3>More finance-heavy interviews</h3>
+ <p>The first round covered data professionals broadly, which was useful for understanding the space. The strongest signal came from the second round, focused on finance and reporting-specific roles. I'd front-load more of those. The pain is most acute in FP&A and I could have arrived at the insight pivot faster with a tighter starting segment.</p>
+
+ <h3>Expand the problem space beyond report prep</h3>
+ <p>Interviews surfaced a broader opportunity than what v1 addresses. The anxiety isn't only about getting the numbers right before the meeting. It is about being confident and prepared for any question a CFO might ask. "What if I'm asked something I don't have the answer to?" came up in multiple interviews. The v1 scope was right. But the longer-term opportunity is a full executive readiness layer — not just aligning the numbers before the meeting, but preparing the analyst to answer any question the room might ask.</p>
+
+ <h3>Lock the competitive position earlier</h3>
+ <p>The answer was always in the interviews: Copilot solves formatting, Clarive solves alignment. They are adjacent products, not competitors. I arrived at that framing later than I should have. Next time I'd define the competitive position before writing a single feature spec, not after — it shapes every prioritization decision that follows.</p>
+ </div>
+
+ <hr>
+
+ <div class="footer">
+ <div class="footer-left">
+ <strong>Dedeepya Guntaka</strong> &nbsp;·&nbsp; Product Manager · New York, NY &nbsp;·&nbsp; 2026
+ </div>
+ <div class="footer-links"><a href="https://www.linkedin.com/in/dedeepyaguntaka/">LinkedIn</a></d
